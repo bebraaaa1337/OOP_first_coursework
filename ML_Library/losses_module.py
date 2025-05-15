@@ -1,10 +1,12 @@
+import numpy as np
 class MSE_Loss:
     def __init__(self):
-        self.grad=0
-        self.loss=0
+        self.grad=[]
     def get_loss(self,y_pred,y_true):
-        self.loss=(y_pred-y_true)**2
-        self.grad=2*(y_pred-y_true)
-        return self.loss
+        loss=(y_pred-y_true)**2
+        self.grad.append(2*(y_pred-y_true))
+        return loss
     def get_grad(self):
-        return self.grad
+        return np.array(self.grad)
+    def zero_grad(self):
+        self.grad=[]

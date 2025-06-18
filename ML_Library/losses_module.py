@@ -1,6 +1,11 @@
 import numpy as np
-
-class MSE_Loss:
+class loss_fnc:
+    def get_loss(self, y_pred, y_true):
+        raise NotImplementedError
+    def get_grad(self, y_pred, y_true):
+        raise NotImplementedError
+    
+class MSE_Loss(loss_fnc):
     """"
     Класс реализации MSE
     """
@@ -30,7 +35,7 @@ class MSE_Loss:
     
 
 
-class MAE_Loss:
+class MAE_Loss(loss_fnc):
     """"
     Класс реализации MAE
     """
@@ -58,7 +63,7 @@ class MAE_Loss:
         grad = np.sign(y_pred - y_true) / num_elements
         return grad
     
-class Log_loss:
+class Log_loss(loss_fnc):
 
     def get_loss(self, y_pred,y_true):
         y_pred = np.array(y_pred)
